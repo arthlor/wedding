@@ -84,7 +84,7 @@ export default function Upload({ onUploadSuccess }) {
     if (limitLoading) return <div className="text-gray-500 text-sm p-4 text-center">Limitler kontrol ediliyor...</div>
 
     return (
-        <div className="glass-panel p-8 rounded-2xl max-w-md w-full mx-auto transition-all duration-300 hover:shadow-2xl">
+        <div className="glass-panel p-6 md:p-8 rounded-2xl max-w-md w-full mx-auto transition-all duration-300 hover:shadow-2xl">
             <div className="flex items-center justify-between mb-6">
                 <h3 className="text-xl font-serif text-primary flex items-center gap-2">
                     <Camera className="w-5 h-5" />

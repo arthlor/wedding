@@ -49,18 +49,18 @@ function Lightbox({ photo, onClose, onNext, onPrev, hasNext, hasPrev }) {
             {hasPrev && (
                 <button
                     onClick={(e) => { e.stopPropagation(); onPrev() }}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all z-50 hidden md:block"
+                    className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-2 md:p-3 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all z-50"
                 >
-                    <ChevronLeft className="w-10 h-10" />
+                    <ChevronLeft className="w-8 h-8 md:w-10 md:h-10" />
                 </button>
             )}
 
             {hasNext && (
                 <button
                     onClick={(e) => { e.stopPropagation(); onNext() }}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all z-50 hidden md:block"
+                    className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-2 md:p-3 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all z-50"
                 >
-                    <ChevronRight className="w-10 h-10" />
+                    <ChevronRight className="w-8 h-8 md:w-10 md:h-10" />
                 </button>
             )}
 
@@ -73,9 +73,9 @@ function Lightbox({ photo, onClose, onNext, onPrev, hasNext, hasPrev }) {
                     onDoubleClick={toggleLike}
                 />
 
-                {/* Mobile Navigation overlays (invisible tap zones) */}
-                <div className="absolute inset-y-0 left-0 w-1/4 z-40 md:hidden" onClick={(e) => { e.stopPropagation(); if (hasPrev) onPrev() }} />
-                <div className="absolute inset-y-0 right-0 w-1/4 z-40 md:hidden" onClick={(e) => { e.stopPropagation(); if (hasNext) onNext() }} />
+                {/* Mobile Navigation overlays (invisible tap zones) - Removed as buttons are now visible */}
+                {/* <div className="absolute inset-y-0 left-0 w-1/4 z-40 md:hidden" onClick={(e) => { e.stopPropagation(); if (hasPrev) onPrev() }} />
+                <div className="absolute inset-y-0 right-0 w-1/4 z-40 md:hidden" onClick={(e) => { e.stopPropagation(); if (hasNext) onNext() }} /> */}
 
 
                 {/* Bottom ActionBar */}

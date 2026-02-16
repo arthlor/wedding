@@ -5,7 +5,7 @@ import Admin from './pages/Admin'
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <div className="min-h-screen bg-secondary selection:bg-primary/30">
         <header className="fixed w-full top-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-white/20">
           <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -33,7 +33,7 @@ function App() {
                       <h2 className="text-xl md:text-2xl text-primary font-sans font-light tracking-[0.2em] uppercase">
                         14.07.2026
                       </h2>
-                      <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif text-gray-800 leading-tight">
+                      <h1 className="text-5xl md:text-7xl lg:text-9xl font-serif text-gray-800 leading-tight">
                         Düğünümüze<br />
                         <span className="text-primary italic">Hoşgeldiniz</span>
                       </h1>
@@ -54,7 +54,7 @@ function App() {
                   <div className="flex-1 w-full max-w-xl md:max-w-none relative animate-fade-in">
                     <div className="relative aspect-[3/4] md:aspect-[4/5] w-full rounded-t-[10rem] rounded-b-[2rem] overflow-hidden shadow-2xl border-4 border-white">
                       <img
-                        src="/hero.png"
+                        src={`${import.meta.env.BASE_URL}hero.png`}
                         onError={(e) => { e.target.onerror = null; e.target.src = "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop" }}
                         alt="Gizem & Anıl"
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
