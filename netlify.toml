@@ -1,0 +1,13 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[images]
+  # Allow Netlify Image CDN to optimize images from Supabase
+  remote_images = ["https://*.supabase.co/storage/v1/object/public/wedding_photos/*"]
+
+[[redirects]]
+  # SPA Redirect
+  from = "/*"
+  to = "/index.html"
+  status = 200
