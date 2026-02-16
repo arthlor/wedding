@@ -16,9 +16,9 @@ export function useLikes(photoId, initialCount = 0, userId) {
                 .select('id')
                 .eq('photo_id', photoId)
                 .eq('user_id', userId)
-                .maybeSingle()
+                .limit(1)
 
-            if (data) setIsLiked(true)
+            if (data && data.length > 0) setIsLiked(true)
         }
 
         checkLikeStatus()

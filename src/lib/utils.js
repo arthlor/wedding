@@ -16,9 +16,10 @@ export function getCdnUrl(storagePath, width = 800) {
     // We'll fallback to direct Supabase URL in dev if needed, or just use the pattern 
     // ensuring the redirect rule is in netlify.toml
 
-    const isDev = import.meta.env.DEV || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    // Only use Netlify Image CDN in production on the actual domain
+    const isProduction = window.location.hostname.endsWith('.netlify.app') || window.location.hostname === 'gizem-anil.com'
 
-    if (isDev) {
+    if (!isProduction) {
         return publicUrl
     }
 
