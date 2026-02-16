@@ -98,6 +98,14 @@ export default function Upload({ onUploadSuccess }) {
                 </span>
             </div>
 
+            {!isLimitReached && (
+                <div className="mb-6 p-4 bg-primary/5 rounded-xl border border-primary/10 text-center">
+                    <p className="text-sm text-gray-700 font-medium flex items-center justify-center gap-2">
+                        Herkesin 10 fotoğraf yükleme hakkı var. Galerinizdeki en iyi fotoğrafları yükleyin ❤️
+                    </p>
+                </div>
+            )}
+
             {isLimitReached ? (
                 <div className="bg-red-50/50 border border-red-100 rounded-xl p-6 flex flex-col items-center text-center space-y-3">
                     <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
