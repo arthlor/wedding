@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { supabase } from '../lib/supabaseClient'
 
 export function useUploadLimit(userId) {
     const [count, setCount] = useState(0)
     const [loading, setLoading] = useState(true)
 
-    const fetchCount = async () => {
+    const fetchCount = useCallback(async () => {
         if (!userId) return
 
         try {
@@ -21,11 +21,11 @@ export function useUploadLimit(userId) {
         } finally {
             setLoading(false)
         }
-    }
+    }, [userId])
 
     useEffect(() => {
         fetchCount()
-    }, [userId])
+    }, [fetchCount])
 
     // Function to manually refresh, e.g., after upload
     const refresh = () => fetchCount()

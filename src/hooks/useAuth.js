@@ -6,6 +6,14 @@ export function useAuth() {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
+        const signInAnonymously = async () => {
+            const { error } = await supabase.auth.signInAnonymously()
+            if (error) {
+                console.error('Error signing in anonymously:', error)
+                setLoading(false)
+            }
+        }
+
         // 1. Get initial session
         supabase.auth.getSession().then(({ data: { session } }) => {
             setSession(session)
@@ -27,14 +35,6 @@ export function useAuth() {
 
         return () => subscription.unsubscribe()
     }, [])
-
-    async function signInAnonymously() {
-        const { error } = await supabase.auth.signInAnonymously()
-        if (error) {
-            console.error('Error signing in anonymously:', error)
-            setLoading(false)
-        }
-    }
 
     return { session, user: session?.user, loading }
 }

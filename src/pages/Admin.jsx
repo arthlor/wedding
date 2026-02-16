@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '../lib/supabaseClient'
 import { getCdnUrl } from '../lib/utils'
 import { Check, X, Loader2, LogIn, LogOut, CheckSquare, Square, Trash2 } from 'lucide-react'
@@ -14,6 +14,24 @@ export default function Admin() {
 
     const [activeTab, setActiveTab] = useState('pending') // 'pending' or 'approved'
 
+    const fetchPhotos = useCallback(async () => {
+        const isApproved = activeTab === 'approved'
+        const { data, error } = await supabase
+            .from('photos')
+            .select('*')
+            .eq('is_approved', isApproved)
+            .order('created_at', { ascending: false })
+
+        if (error) {
+            console.error('Error fetching photos:', error)
+        }
+
+        if (data) {
+            setPhotos(data)
+            setSelected(new Set()) // Reset selection on refresh/tab change
+        }
+    }, [activeTab])
+
     // Check for existing session on mount
     useEffect(() => {
         supabase.auth.getSession().then(({ data: { session } }) => {
@@ -22,7 +40,7 @@ export default function Admin() {
                 fetchPhotos()
             }
         })
-    }, [activeTab])
+    }, [fetchPhotos])
 
     const handleLogin = async (e) => {
         e.preventDefault()
@@ -37,20 +55,6 @@ export default function Admin() {
         } else {
             setSession(data.session)
             fetchPhotos()
-        }
-    }
-
-    const fetchPhotos = async () => {
-        const isApproved = activeTab === 'approved'
-        const { data, error } = await supabase
-            .from('photos')
-            .select('*')
-            .eq('is_approved', isApproved)
-            .order('created_at', { ascending: false })
-
-        if (data) {
-            setPhotos(data)
-            setSelected(new Set()) // Reset selection on refresh/tab change
         }
     }
 
